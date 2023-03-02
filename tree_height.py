@@ -35,6 +35,7 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
+    in_type = ""
     try:
         in_type = input()
     except:
