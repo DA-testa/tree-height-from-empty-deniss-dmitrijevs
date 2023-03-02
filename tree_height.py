@@ -35,15 +35,16 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
-    input_type = input()
+    in_type = input()
 
-    if "i" in input_type.lower():
+    if "i" in in_type.lower():
         node_count = int(input())
         parent_input = str(input())
         parent_list = [int(num) for num in parent_input.split(" ")]
         print(compute_height(node_count, parent_list))
-    elif "f" in input_type.lower():
-        path = "test/" + input()
+    elif "f" in in_type.lower():
+        file_name = str(input())
+        path = "test/" + file_name
         if not "a" in path:
             with open(path, 'r') as file:
                 node_count = int(file.readline())
