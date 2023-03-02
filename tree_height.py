@@ -1,5 +1,7 @@
 # python3
 
+#Deniss Dmitrijevs 221RDB322
+
 import sys
 import threading
 import numpy
