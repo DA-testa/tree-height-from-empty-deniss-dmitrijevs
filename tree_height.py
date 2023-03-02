@@ -46,8 +46,8 @@ def main():
         path = "test/" + input()
         if not "a" in path:
             with open(path, 'r') as file:
-                node_count = int(file.readLine())
-                parent_input = str(file.readLine())
+                node_count = int(file.readline())
+                parent_input = str(file.readline())
                 parent_list = [int(num) for num in parent_input.split(" ")]
                 print(compute_height(node_count, parent_list))
 
