@@ -35,10 +35,11 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
-    in_type = input()
+    try:
+        in_type = input()
+    except:
+        pass
 
-    raise Exception(in_type)
-    
     if "i" in in_type.lower():
         node_count = int(input())
         parent_input = str(input())
