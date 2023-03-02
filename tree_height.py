@@ -35,7 +35,7 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
-    input_type = str(input())
+    input_type = input()
 
     if "i" in input_type.lower():
         node_count = int(input())
