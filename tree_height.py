@@ -39,14 +39,16 @@ def main():
 
     if "i" in input_type.lower():
         node_count = int(input())
-        parent_list = [int(num) for num in input().split()]
+        parent_input = str(input())
+        parent_list = [int(num) for num in parent_input.split(" ")]
         print(compute_height(node_count, parent_list))
     elif "f" in input_type.lower():
         path = "test/" + input()
         if not "a" in path:
             with open(path, 'r') as file:
-                node_count = file.readLine()
-                parent_list = [int(num) for num in file.readLine().split()]
+                node_count = int(file.readLine())
+                parent_input = str(file.readLine())
+                parent_list = [int(num) for num in parent_input.split(" ")]
                 print(compute_height(node_count, parent_list))
 
 # In Python, the default limit on recursion depth is rather low,
