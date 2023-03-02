@@ -6,25 +6,36 @@ import sys
 import threading
 import numpy
 
+def path_to_root(node, parents, node_visited_statuses, node_paths_to_root):
+    if parents[node] == -1:
+        return 1
+    else:
+        if node_visited_statuses[parents[node]]:
+            return 1 + node_paths_to_root[parents[node]]
+        else:
+            node_paths_to_root[node] = 1 + path_to_root(parents[node], parents, node_visited_statuses, node_paths_to_root)
+            node_visited_statuses[node] = True
+            return node_paths_to_root[node]
 
 def compute_height(n, parents):
     # Write this function
     max_height = 0
     # Your code here
-    node_heights = numpy.zeros(n)
 
-    for node, parent in enumerate(parents):
-        if (node_heights[node] == 0):
-            node_heights[node] = node_heights[node] + 1
-        if node_heights[parent] <= node_heights[node]:
-            node_heights[parent] = node_heights[node] + 1
+    node_paths_to_root = numpy.zeros(n)
+    node_visited_statuses = numpy.full(n, False)
 
-    max_height = node_heights[0]
-    for node_height in node_heights[1:]:
-        if node_height > max_height:
-            max_height = node_height
+    for i in range(n):
+        node_paths_to_root[i] = path_to_root(i, parents, node_visited_statuses, node_paths_to_root)
 
-    return int(max_height)
+    max_path = node_paths_to_root[0]
+    for node_path_to_root in node_paths_to_root[1:]:
+        if node_path_to_root > max_path:
+            max_path = node_path_to_root
+
+    max_height = int(max_path)
+
+    return max_height
 
 
 def main():
@@ -35,11 +46,7 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
-    in_type = ""
-    try:
-        in_type = input()
-    except:
-        pass
+    in_type = input()
 
     if "i" in in_type.lower():
         node_count = int(input())
@@ -62,5 +69,3 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-main()
-# print(numpy.array([1,2,3]))
