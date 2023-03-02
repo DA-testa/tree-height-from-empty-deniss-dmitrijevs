@@ -37,6 +37,8 @@ def main():
 
     in_type = input()
 
+    raise Exception(in_type)
+    
     if "i" in in_type.lower():
         node_count = int(input())
         parent_input = str(input())
